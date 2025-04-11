@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookStore - Интернет-магазин книг</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>BookStore</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#cart">Корзина <span id="cart-count">0</span></a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#account">Личный кабинет</a></li>
+                </ul>
+            </nav>
+            <div class="search">
+                <input type="text" placeholder="Поиск по книгам...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Каталог книг -->
+        <section id="catalog">
+            <h2>Каталог книг</h2>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="genre">Жанр:</label>
+                    <select id="genre">
+                        <option value="all">Все</option>
+                        <option value="fantasy">Фэнтези</option>
+                        <option value="science">Научная литература</option>
+                        <option value="romance">Роман</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price">Цена:</label>
+                    <select id="price">
+                        <option value="all">Все</option>
+                        <option value="0-500">До 500 руб</option>
+                        <option value="500-1000">500-1000 руб</option>
+                        <option value="1000+">От 1000 руб</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort">Сортировка:</label>
+                    <select id="sort">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">Цена по возрастанию</option>
+                        <option value="price-desc">Цена по убыванию</option>
+                        <option value="rating">По рейтингу</option>
+                    </select>
+                </div>
+            </div>
+            <div class="books-grid">
+                <!-- Книги будут загружаться динамически -->
+            </div>
+        </section>
+
+        <!-- Корзина покупок -->
+        <section id="cart" class="hidden">
+            <h2>Корзина покупок</h2>
+            <div class="cart-items">
+                <!-- Товары в корзине будут загружаться динамически -->
+                <p class="empty-cart">Ваша корзина пуста</p>
+            </div>
+            <div class="cart-summary">
+                <p>Итого: <span id="total-price">0</span> руб</p>
+                <button class="checkout">Оформить заказ</button>
+            </div>
+        </section>
+
+        <!-- Отзывы пользователей -->
+        <section id="reviews" class="hidden">
+            <h2>Отзывы</h2>
+            <div class="review-filters">
+                <label for="review-rating">Фильтр по рейтингу:</label>
+                <select id="review-rating">
+                    <option value="all">Все</option>
+                    <option value="5">5 звезд</option>
+                    <option value="4">4 звезды</option>
+                    <option value="3">3 звезды</option>
+                    <option value="2">2 звезды</option>
+                    <option value="1">1 звезда</option>
+                </select>
+            </div>
+            <div class="reviews-list">
+                <!-- Отзывы будут загружаться динамически -->
+            </div>
+            <div class="add-review">
+                <h3>Добавить отзыв</h3>
+                <div class="rating">
+                    <span class="star" data-value="1">☆</span>
+                    <span class="star" data-value="2">☆</span>
+                    <span class="star" data-value="3">☆</span>
+                    <span class="star" data-value="4">☆</span>
+                    <span class="star" data-value="5">☆</span>
+                </div>
+                <textarea placeholder="Ваш отзыв..."></textarea>
+                <button class="submit-review">Отправить</button>
+            </div>
+        </section>
+
+        <!-- Личный кабинет -->
+        <section id="account" class="hidden">
+            <h2>Личный кабинет</h2>
+            <div class="account-tabs">
+                <button class="tab-btn active" data-tab="profile">Профиль</button>
+                <button class="tab-btn" data-tab="orders">Мои заказы</button>
+                <button class="tab-btn" data-tab="settings">Настройки</button>
+            </div>
+            
+            <div class="tab-content active" id="profile">
+                <div class="profile-info">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/150" alt="Аватар">
+                        <button class="change-avatar">Изменить аватар</button>
+                    </div>
+                    <div class="details">
+                        <p><strong>Имя:</strong> <span id="user-name">Иван Иванов</span></p>
+                        <p><strong>Email:</strong> <span id="user-email">user@example.com</span></p>
+                        <p><strong>Страна:</strong> <span id="user-country">Россия</span></p>
+                        <p><strong>Город:</strong> <span id="user-city">Москва</span></p>
+                        <p><strong>Возраст:</strong> <span id="user-age">30</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="orders">
+                <p>Здесь будут отображаться ваши заказы</p>
+            </div>
+            
+            <div class="tab-content" id="settings">
+                <form class="settings-form">
+                    <div class="form-group">
+                        <label for="edit-name">ФИО:</label>
+                        <input type="text" id="edit-name" value="Иван Иванов">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email">Email:</label>
+                        <input type="email" id="edit-email" value="user@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-password">Новый пароль:</label>
+                        <input type="password" id="edit-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-country">Страна:</label>
+                        <input type="text" id="edit-country" value="Россия">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-city">Город:</label>
+                        <input type="text" id="edit-city" value="Москва">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-age">Возраст:</label>
+                        <input type="number" id="edit-age" value="30">
+                    </div>
+                    <button type="submit" class="save-changes">Сохранить изменения</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 BookStore. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
