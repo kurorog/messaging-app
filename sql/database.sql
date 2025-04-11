@@ -16,6 +16,13 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- Обновляем таблицу users
+ALTER TABLE users
+MODIFY COLUMN password VARCHAR(255) NOT NULL,
+ADD COLUMN country VARCHAR(50),
+ADD COLUMN city VARCHAR(50),
+ADD COLUMN age INT;
+
 -- Таблица книг
 CREATE TABLE books (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -93,5 +100,5 @@ INSERT INTO users (name, email, password, country, city, age) VALUES
 INSERT INTO reviews (book_id, user_id, rating, comment) VALUES
 (1, 1, 5, 'Отличная книга, рекомендую!'),
 (2, 1, 4, 'Хорошее начало серии'),
-(1, 2, 5, 'Шедевр фэнтези-литературы'),
+(1, 2, 5, ' Шедевр фэнтези-литературы'),
 (3, 2, 3, 'Интересно, но тяжело читается');

@@ -8,6 +8,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Модальное окно входа -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Вход в аккаунт</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Пароль:</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="auth-btn">Войти</button>
+                <p class="auth-switch">Нет аккаунта? <a href="#" id="show-register">Зарегистрироваться</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно регистрации -->
+    <div id="register-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Регистрация</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">ФИО:</label>
+                    <input type="text" id="register-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Пароль:</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-country">Страна:</label>
+                    <input type="text" id="register-country" name="country">
+                </div>
+                <div class="form-group">
+                    <label for="register-city">Город:</label>
+                    <input type="text" id="register-city" name="city">
+                </div>
+                <div class="form-group">
+                    <label for="register-age">Возраст:</label>
+                    <input type="number" id="register-age" name="age">
+                </div>
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+                <p class="auth-switch">Уже есть аккаунт? <a href="#" id="show-login">Войти</a></p>
+            </form>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="logo">
@@ -18,9 +74,14 @@
                     <li><a href="#catalog">Каталог</a></li>
                     <li><a href="#cart">Корзина <span id="cart-count">0</span></a></li>
                     <li><a href="#reviews">Отзывы</a></li>
-                    <li><a href="#account">Личный кабинет</a></li>
+                    <li id="account-nav-item" style="display: none;"><a href="#account">Личный кабинет</a></li>
                 </ul>
             </nav>
+            <div class="auth-buttons">
+                <button id="login-btn">Войти</button>
+                <button id="logout-btn" class="hidden">Выйти</button>
+                <span id="user-greeting" class="hidden"></span>
+            </div>
             <div class="search">
                 <input type="text" placeholder="Поиск по книгам...">
                 <button><i class="fas fa-search"></i></button>
@@ -45,7 +106,7 @@
                 <div class="filter-group">
                     <label for="price">Цена:</label>
                     <select id="price">
-                        <option value="all">Все</option>
+                        <option value="all">Все </option>
                         <option value="0-500">До 500 руб</option>
                         <option value="500-1000">500-1000 руб</option>
                         <option value="1000+">От 1000 руб</option>
